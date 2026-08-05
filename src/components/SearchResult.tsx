@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 const SearchResult = ({ query }: any) => {
-  const [video, setvideos] = useState(null);
+const [video, setvideos] = useState<any[] | null>(null);
+
 
   const videos = async () => {
     const allVideos = [
