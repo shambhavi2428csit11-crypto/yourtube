@@ -15,16 +15,8 @@ import {
 } from "./ui/dropdown-menu";
 import Channeldialogue from "./channeldialogue";
 
-
-
 const Header = () => {
   const { user, logout, handlegooglesignin } = useUser();
-  // const user: any = {
-  //   id: "1",
-  //   name: "John Doe",
-  //   email: "john@example.com",
-  //   image: "https://github.com/shadcn.png?height=32&width=32",
-  // };
   const [searchQuery, setSearchQuery] = useState("");
   const [hasChannel, sethaschannel] = useState(false);
   const [isdialogeopen, setisdialogeopen] = useState(false);
@@ -92,22 +84,24 @@ const Header = () => {
         {user ? (
           <>
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="relative h-8 w-8 rounded-full"
-                >
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src={user.image || ""} alt={user.name || ""} />
-                    <AvatarFallback>{user.name?.[0] || "U"}</AvatarFallback>
-                  </Avatar>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56" align="end" forceMount>
+              <DropdownMenuTrigger
+                render={
+                  <Button
+                    variant="ghost"
+                    className="relative h-8 w-8 rounded-full"
+                  >
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={user.image || ""} alt={user.name || ""} />
+                      <AvatarFallback>{user.name?.[0] || "U"}</AvatarFallback>
+                    </Avatar>
+                  </Button>
+                }
+              />
+              <DropdownMenuContent className="w-56" align="end">
                 {hasChannel ? (
-                  <DropdownMenuItem asChild>
-                    <Link href="/channel/my-channel">Your channel</Link>
-                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    render={<Link href="/channel/my-channel">Your channel</Link>}
+                  />
                 ) : (
                   <div className="px-2 py-1.5">
                     <Button
@@ -120,12 +114,12 @@ const Header = () => {
                     </Button>
                   </div>
                 )}
-                <DropdownMenuItem asChild>
-                  <Link href="/liked">Liked videos</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/watch-later">Watch later</Link>
-                </DropdownMenuItem>
+                <DropdownMenuItem
+                  render={<Link href="/liked">Liked videos</Link>}
+                />
+                <DropdownMenuItem
+                  render={<Link href="/watch-later">Watch later</Link>}
+                />
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={logout}>Sign out</DropdownMenuItem>
               </DropdownMenuContent>
