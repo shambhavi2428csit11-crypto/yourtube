@@ -66,13 +66,16 @@ const VideoUploader = ({ channelId, channelName }: any) => {
       setIsUploading(true);
       setUploadProgress(0);
       const res = await axiosInstance.post("/video/upload", formdata, {
-        onUploadProgress: (progresEvent: any) => {
-          const progress = Math.round(
-            (progresEvent.loaded * 100) / progresEvent.total
-          );
-          setUploadProgress(progress);
-        },
-      });
+  headers: {
+    "Content-Type": "multipart/form-data",
+  },
+  onUploadProgress: (progresEvent: any) => {
+    const progress = Math.round(
+      (progresEvent.loaded * 100) / progresEvent.total
+    );
+    setUploadProgress(progress);
+  },
+});
       toast.success("Upload successfully");
       setUploadComplete(true);
       resetForm();
