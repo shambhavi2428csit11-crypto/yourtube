@@ -3,19 +3,16 @@ import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 
-const videos = "/video/vdo.mp4";
 export default function VideoCard({ video }: any) {
   return (
     <Link href={`/watch/${video?._id}`} className="group">
       <div className="space-y-3">
         <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100">
-          <video
-            src={`${process.env.BACKEND_URL}/${video?.filepath}`}
-            className="object-cover group-hover:scale-105 transition-transform duration-200"
+          <img
+            src={video?.thumbnail || "/placeholder.svg"}
+            alt={video?.videotitle}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
           />
-          <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-1 rounded">
-            10:24
-          </div>
         </div>
         <div className="flex gap-3">
           <Avatar className="w-9 h-9 flex-shrink-0">
