@@ -14,6 +14,7 @@ import {
   DropdownMenuSeparator,
 } from "./ui/dropdown-menu";
 import Channeldialogue from "./channeldialogue";
+import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const { user, logout, handlegooglesignin } = useUser();
@@ -33,7 +34,7 @@ const Header = () => {
     }
   };
   return (
-    <header className="flex items-center justify-between px-4 py-2 bg-white border-b">
+    <header className="flex items-center justify-between px-4 py-2 bg-background border-b border-border">
       <div className="flex items-center gap-4">
         <Button variant="ghost" size="icon">
           <Menu className="w-6 h-6" />
@@ -81,6 +82,7 @@ const Header = () => {
         <Button variant="ghost" size="icon">
           <Bell className="w-6 h-6" />
         </Button>
+        <ThemeToggle />
         {user ? (
           <>
             <DropdownMenu>
